@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   respond_to :json
   
   def sanitize_devise_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name username])
   end
 
   def render_resource(resource)
@@ -16,14 +16,10 @@ class ApplicationController < ActionController::API
 
   def validation_error(resource)
     render json: {
-      errors: [
-        {
-          status: '400',
-          title: 'Bad Request',
-          detail: resource.errors,
-          code: '100'
-        }
-      ]
+      error: 'Bad request',
+      status: '400',
+      code: '100',
+      details: resource.errors
     }, status: :bad_request
   end
 end

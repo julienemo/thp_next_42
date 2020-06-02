@@ -49,6 +49,9 @@ visualize public info for all users
 **GET /users/id**
 visualize public info for specified user
 
+**GET /profile**
+visualize own profile, all info except for password
+
 **PATCH /users/id**
 
 only allowed on one's own profile

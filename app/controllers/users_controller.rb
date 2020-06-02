@@ -1,33 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
   def index
-    @users = User.all
+    @users = User.all.map { |user| public_info(user) }
 
     render json: @users
   end
 
-  # GET /users/1
   def show
-    response = {
-      username: @user.username,
-      first_name: @user.first_name,
-      last_name_intial: @user.last_name[0],
-    }
-
-    render json: response
-  end
-
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    render json: public_info(@user)
   end
 
   # PATCH/PUT /users/1
@@ -35,23 +16,33 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {error: @user.errors}, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1
   def destroy
+    id = @user.id
     @user.destroy
+    render json: { id: id, status: 'user deleted' }
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :username)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :username)
+    # in postman, to write body in "raw" that contains a scope, do key; user[something]
+  end
+
+  def public_info(user)
+    {
+      username: user.username,
+      first_name: user.first_name,
+      last_name_initial: user.last_name[0]
+    }
+  end
 end

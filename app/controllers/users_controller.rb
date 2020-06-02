@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def public_info(user)
     {
+      id: user.id,
       username: user.username,
       first_name: user.first_name,
       last_name_initial: user.last_name[0]

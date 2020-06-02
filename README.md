@@ -1,24 +1,46 @@
-# README
+### Rails API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+For the moment there is no token anywhere and no sign-in
 
-Things you may want to cover:
+* * *
+### Endpoints
 
-* Ruby version
+**GET /users**
+visualize public info for all users
 
-* System dependencies
+**GET /users/id**
+visualize public info for specified user
 
-* Configuration
+**POST /signup**
 
-* Database creation
+data-form body:
+```
+{
+  user[first_name]: "something",
+  user[last_name]: "something",
+  user[username]: "something",
+  user[email]: "something@yopmail.com",
+  user[password]: "something"
+}
+```
 
-* Database initialization
+**PATCH /users/id**
 
-* How to run the test suite
+data-form body:
+```
+{
+  user[first_name]: "something",
+  user[last_name]: "something",
+  user[username]: "something",
+  user[email]: "something@yopmail.com",
+  user[password]: "something"
+}
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+**DELETE /users/id**
 
-* Deployment instructions
-
-* ...
+example answer 
+```{
+  id: 3
+  status: 'user deleted'
+}```

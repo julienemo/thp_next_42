@@ -5,6 +5,11 @@ class ProfilesController < ApplicationController
     render json: @user
   end
 
+  def images
+    @images = Image.all.select { |image| image.uploaded_by.id == @user.id }
+    render json: @images
+  end
+
   private
 
   def set_user

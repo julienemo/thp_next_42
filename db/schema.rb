@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_121627) do
+ActiveRecord::Schema.define(version: 2020_06_02_213106) do
+
+  create_table "images", force: :cascade do |t|
+    t.integer "uploaded_by_id", null: false
+    t.binary "stream", null: false
+    t.string "extension", null: false
+    t.string "description"
+    t.boolean "is_private", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index "\"uploaded_by\"", name: "index_images_on_uploaded_by"
+    t.index ["extension"], name: "index_images_on_extension"
+    t.index ["is_private"], name: "index_images_on_is_private"
+    t.index ["uploaded_by_id"], name: "index_images_on_uploaded_by_id"
+  end
 
   create_table "jwt_blacklist", force: :cascade do |t|
     t.string "jti", null: false
@@ -34,4 +48,5 @@ ActiveRecord::Schema.define(version: 2020_06_02_121627) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "images", "users", column: "uploaded_by_id"
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users,
              path: '',
              path_names: {
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
                registrations: 'registrations'
              }
   resources :users, except: [:create]
+  resources :images
 
   get "/profile" => "profiles#index"
+  get "/profile/images" => "profiles#images"
 end

@@ -75,4 +75,43 @@ answer
 ```{
   id: 3
   status: 'user deleted'
-}```
+}
+```
+
+**GET /images**
+visualize all public or own images
+
+**GET /images/id**
+visualize specified image, if private, returns "can not find"
+
+**POST /images**
+
+data-form body:
+```
+{
+  image[description]: "something",
+  image[extension]: "something",
+  image[stream]: "something",
+  image[is_private]: true
+}
+```
+
+**PATCH /images/id**
+only allowed on one's own image
+
+data-form body:
+```
+{
+  image[description]: "something",
+  image[extension]: "something",
+  image[stream]: "something",
+  image[is_private]: true
+}
+```
+
+**DELETE /images/id**
+only allowed on one's own image
+
+
+**GET /profile/images**
+visualize one's own images

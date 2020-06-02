@@ -11,4 +11,6 @@ Rails.application.routes.draw do
                registrations: 'registrations'
              }
   resources :users, except: [:create]
+
+  get "/profile" => "profiles#index"
 end

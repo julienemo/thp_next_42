@@ -4,6 +4,8 @@
 * * *
 ### Endpoints
 
+* * *
+
 #### Public (without token)
 **POST /sign_up**
 
@@ -32,6 +34,8 @@ data-form body:
 ```
 Token is in the "Authorization" header
 
+* * *
+
 #### Private (token mandatory)
 
 the following requests need authorization header
@@ -47,7 +51,7 @@ visualize public info for specified user
 
 **PATCH /users/id**
 
-update certain info on specified user (currently can modify other people's info)
+only allowed on one's own profile
 
 data-form body:
 ```
@@ -62,7 +66,7 @@ data-form body:
 
 **DELETE /users/id**
 
-(currently can modify other people's info)
+only allowed on one's own profile
 
 answer 
 ```{

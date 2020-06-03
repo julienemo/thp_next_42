@@ -10,6 +10,13 @@ class ProfilesController < ApplicationController
     render json: @images
   end
 
+  def comments
+    @comments = Comment.all
+    .select { |comment| comment.author.id == @user.id }
+    .map { |comment| comment_info(comment) }
+    render json: @comments
+  end
+
   private
 
   def set_user

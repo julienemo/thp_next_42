@@ -4,13 +4,15 @@ class ImagesController < ApplicationController
   before_action :current_user_can_change_or_delete_image, only: [:update, :destroy]
 
   def index
-    @images = Image.all.select { |image| current_user_can_see_image(image) }
+    @images = Image.all
+    .select { |image| current_user_can_see_image(image) }
+    .map { |image| image_info(image) }
     render json: @images
   end
 
   def show
     if current_user_can_see_image(@image)
-      render json: @image
+      render json: image_info(@image)
     else
       render json: { error: 'Cannot find', detail: 'Can not find the required resource' }
     end
@@ -20,7 +22,7 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params.merge(uploaded_by: @user))
 
     if @image.save
-      render json: @image, status: :created, location: @image
+      render json: image_info(@image), status: :created, location: @image
     else
       render json: { error: @image.errors }, status: :unprocessable_entity
     end
@@ -28,7 +30,7 @@ class ImagesController < ApplicationController
 
   def update
     if @image.update(image_params)
-      render json: @image
+      render json: image_info(@image)
     else
       render json: { error: @image.errors }, status: :unprocessable_entity
     end
@@ -52,10 +54,6 @@ class ImagesController < ApplicationController
 
   def image_params
     params.require(:image).permit(:stream, :extension, :description, :is_private)
-  end
-
-  def current_user_can_see_image(image)
-    !image.is_private || current_user.id == image.uploaded_by.id
   end
 
   def current_user_can_change_or_delete_image

@@ -12,8 +12,12 @@ Rails.application.routes.draw do
                registrations: 'registrations'
              }
   resources :users, except: [:create]
-  resources :images
+  resources :images do
+    post "/comments" => "comments#create"
+  end
+  resources :comments, except: [:index, :create]
 
   get "/profile" => "profiles#index"
   get "/profile/images" => "profiles#images"
+  get "/profile/comments" => "profiles#comments"
 end

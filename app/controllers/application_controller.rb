@@ -32,4 +32,16 @@ class ApplicationController < ActionController::API
       format.json { head 401 }
     end
   end
+
+  def image_info(image)
+    image.attributes.merge(uploaded_by: image.uploaded_by)
+  end
+
+  def comment_info(comment)
+    comment.attributes.merge(author: comment.author, image: comment.image, parent: comment.parent)
+  end
+
+  def current_user_can_see_image(image)
+    !image.is_private || current_user.id == image.uploaded_by.id
+  end
 end

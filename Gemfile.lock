@@ -189,15 +189,15 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
-  devise
+  devise (>= 4.7.1)
   devise-jwt (~> 0.6.0)
   dotenv-rails
   listen (~> 3.2)
-  pry
+  pry (>= 0.13.1)
   puma (~> 4.1)
   rack-cors (~> 1.1, >= 1.1.1)
   rails (~> 6.0.3, >= 6.0.3.1)
-  spring
+  spring (>= 2.1.0)
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   tzinfo-data

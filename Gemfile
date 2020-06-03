@@ -12,16 +12,16 @@ gem 'sqlite3', '~> 1.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'devise-jwt', '~> 0.6.0'
 gem 'dotenv-rails', groups: %i[development test]
 
 group :development, :test do
-  gem 'pry', platforms: %i[mri mingw x64_mingw]
+  gem 'pry', '>=0.13.1', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
   gem 'listen', '~> 3.2'
-  gem 'spring'
+  gem 'spring', '>= 2.1.0'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

@@ -34,7 +34,7 @@ class ApplicationController < ActionController::API
   end
 
   def image_info(image)
-    image.attributes.merge(uploaded_by: image.uploaded_by)
+    image.attributes.merge(uploaded_by: image.uploaded_by).merge(comments: image.comments)
   end
 
   def comment_info(comment)

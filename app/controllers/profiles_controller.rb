@@ -6,7 +6,9 @@ class ProfilesController < ApplicationController
   end
 
   def images
-    @images = Image.all.select { |image| image.uploaded_by.id == @user.id }
+    @images = Image.all
+      .select { |image| image.uploaded_by.id == @user.id }
+      .map { |image| image_info(image) }
     render json: @images
   end
 

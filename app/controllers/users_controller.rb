@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def images
+    @user = User.find(params[:user_id])
+    @images = @user.images
+      .select { |image| current_user_can_see_image(image) }
+      .map {|image| image_info(image) }
+    render json: @images
+  end
+
   def destroy
     id = @user.id
     @user.destroy

@@ -11,7 +11,9 @@ Rails.application.routes.draw do
                sessions: 'sessions',
                registrations: 'registrations'
              }
-  resources :users, except: [:create]
+  resources :users, except: [:create] do
+    get "/images" => "users#images"
+  end
   resources :images do
     post "/comments" => "comments#create"
   end

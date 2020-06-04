@@ -117,6 +117,9 @@ only allowed on one's own image
 visualize one's own images
 
 
+**GET /users/id/images**
+visualize a specified user's visible images
+
 **POST /images/id/comments**
 can not comment on an image you can't see
 currently supports that children and parent have different image ref

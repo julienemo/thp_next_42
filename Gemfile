@@ -11,6 +11,10 @@ gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 gem 'sqlite3', '~> 1.4'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+# this is a websocket-driver dependency
+# earlier versions present vulnerability
+gem 'websocket-extensions', '>= 0.1.5'
+
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '>= 4.7.1'
 gem 'devise-jwt', '~> 0.6.0'

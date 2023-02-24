@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# Non conflicting change that happend after branch creation
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 

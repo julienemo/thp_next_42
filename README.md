@@ -1,6 +1,5 @@
 ### Rails API
 
-
 * * *
 ### Endpoints
 
